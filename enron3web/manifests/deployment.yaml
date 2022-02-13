@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: public-svc
+  labels:
+    app: enron-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3000
+  selector:
+    app: enron-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata : 
+  name: enron-app
+  labels:  
+    app: enron-app
+    tier: web
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: enron-app
+      tier: web
+  template: 
+    metadata: 
+      labels: 
+        app: enron-app
+        tier: web
+    spec:
+      nodeSelector: 
+        kubernetes.io/os: linux
+      volumes: 
+      - name: env-local
+        configMap: 
+          name: env-local
+          items: 
+          - key: .env
+            path: .env.local
+      containers:
+        - name: version
+          image: d854334z.gra7.container-registry.ovh.net/public/enron-web:latest
+          imagePullPolicy: Always
+          ports: 
+          - containerPort: 3000
+          resources:
+            limits: 
+              cpu: 250m 
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+          - mountPath: /app/.env.local
+            name: env-local
+            readOnly: true
+            subPath: .env.local
+          env: 
+          - name: enron-app
+            value: v0_0_4

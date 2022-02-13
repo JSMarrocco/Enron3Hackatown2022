@@ -1,3 +1,63 @@
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height:  calc(35vh - 3rem * 2.3);
+
+  background: url(/img/pexels-sevenstorm-juhaszimrus-439379.jpg) no-repeat;
+  background-position: center 60%;
+  background-size: cover;
+}
+
+.mask{
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: calc(8% - 12vh) 20% 5% 20%;
+  height:  calc(35vh - 3rem * 2.3);
+
+  text-align: center;
+}
+
+.title {
+  font-size: 8vmin;
+  font-weight: 700;
+  color: white
+}
+
+.projectBadgeContiner {
+  position: relative;  
+  /* top: 100px */
+}
+
+.projectBadge {
+  position: absolute;  
+  top: 3px;
+  left: -2px;
+  z-index: 10;
+  font-size: 1rem;
+}
+
+.projectCard {
+  transition-duration: 0.5s;
+}
+
+.projectProgress {
+  font-weight: 700;
+}
+
+.projectCard:hover {
+  transform: scale(1.05);
+  transition-duration: 0.5s;
+  box-shadow:0 4px 8px 6px  rgba(0, 0, 0, 0.1);
+
+}
+
+.bottomCalltoAction {
+  padding: 3%;
+  color: #fff;
+}
+
 .container {
   padding: 0 2rem;
 }

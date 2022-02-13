@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+/manifests/configmap.yaml
+enron3web-firebase-adminsdk-getza-f2de1436f7.json
+
 # dependencies
 /node_modules
 /.pnp

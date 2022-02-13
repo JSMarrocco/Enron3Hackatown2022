@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react'
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore'
 import axios, { AxiosRequestConfig } from 'axios'
 import TitleLogo from "../public/enronLogo.svg";
+import { Map, Marker } from "pigeon-maps"
+import { stamenToner } from 'pigeon-maps/providers'
 
 
 const Home: NextPage = ({children}) => {  
@@ -17,7 +19,7 @@ const Home: NextPage = ({children}) => {
   const [trashCanIncoming, setTrashCanIncoming] = useState(children)
 
   useEffect( () => {
-    setInterval( () => {getTrashCanData()}, 30000);
+    setInterval( () => {getTrashCanData()}, 5000);
   }, [])
 
   const getTrashCanData = () => {
@@ -113,6 +115,19 @@ const Home: NextPage = ({children}) => {
       );
     };
 
+
+    const MarkerList = ({trashCans}: any) => {
+      const MarkerArray = trashCans.map( (trashCan: any) => {
+
+        return <Marker key={trashCan} width={20} anchor={[45.504462, -73.613885]} />
+
+        
+      })
+
+      return MarkerArray
+    }
+
+
     
   //   const trashCanIncoming = [
   //     {
@@ -145,6 +160,10 @@ const Home: NextPage = ({children}) => {
     <Container>
 
     <TrashCanList trashCans={trashCanIncoming}/>
+{/* 
+    <Map height={300} defaultCenter={[45.50, -73.56]} defaultZoom={12}     provider={stamenToner}>
+    <MarkerList trashCans={trashCanIncoming}/>
+    </Map> */}
 
     </Container>
       

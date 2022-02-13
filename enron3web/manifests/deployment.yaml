@@ -59,4 +59,4 @@ spec:
             subPath: .env.local
           env: 
           - name: enron-app
-            value: v0_0_4
+            value: v0_0_5
